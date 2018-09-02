@@ -1,7 +1,5 @@
 <?php
-require_once("classes/dbobject.php");
-
-print  $dbobject->calculate(50,2);
-
+require("init.php");
+$dbobject->getUserData();
 
 ?>
