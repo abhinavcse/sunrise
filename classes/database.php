@@ -2,19 +2,16 @@
 
 class database
 {
-      public $connection;  
+    private $connection; 
        
-    public function connect()
+    public function __construct()
     {
         $this->connection=mysqli_connect("localhost","root","","sunrise");
-        
-        return $this->connection;
-   
-    }
+    }   
+
     public function query($sql)
     {
-        $con=$this->connect();   
-       return  mysqli_query($con,$sql);
+       return  mysqli_query($this->connection,$sql);
     }
       
 }
