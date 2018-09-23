@@ -2,10 +2,26 @@
 require("init.php");
 if(isset($_POST['submit']))
 {
-$dbobject->email=trim($_POST['email']);$dbobject->name= trim($_POST['name']);
-$dbobject->pwd=trim($_POST['pwd']);   
-$dbobject->create();
-$dbobject->redirect("index.php");
+    $dbobject->email=trim($_POST['email']);$dbobject->name= trim($_POST['name']);
+    $dbobject->pwd=trim($_POST['pwd']);   
+    $dbobject->create();
+    $dbobject->page="index.php";
+    $dbobject->redirect();
+}
+else if(isset($_POST['Login']))
+{
+
+    $dbobject->email=trim($_POST['email']);$dbobject->pwd=trim($_POST['pwd']); 
+    if($dbobject->auth() == 1)
+    {
+        $dbobject->page="home.php";
+        $dbobject->redirect();
+    }
+    else 
+    {
+        $dbobject->page="index.php";
+        $dbobject->redirect();  
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -38,6 +54,22 @@ $dbobject->redirect("index.php");
       placeholder="Enter password" name="pwd">
     </div>
     <button type="submit" name="submit" class="btn btn-default">Submit</button>
+  </form>
+    
+  <hr />
+  <h2>Login</h2>
+  <form class="form-inline" method="post" >
+    <div class="form-group">
+      <label class="sr-only" for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" 
+       name="email">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" 
+      placeholder="Enter password" name="pwd">
+    </div>
+    <button type="submit" name="Login" class="btn btn-default">Login</button>
   </form>
 </div>
 
