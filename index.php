@@ -2,11 +2,12 @@
 require("init.php");
 if(isset($_POST['submit']))
 {
-$dbobject->create(trim($_POST['email']),trim($_POST['name']),trim($_POST['pwd']));
+$dbobject->email=trim($_POST['email']);$dbobject->name= trim($_POST['name']);
+$dbobject->pwd=trim($_POST['pwd']);   
+$dbobject->create();
 $dbobject->redirect("index.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,6 @@ $dbobject->redirect("index.php");
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container">
   <h2>Registration</h2>
   <form class="form-inline" method="post" >

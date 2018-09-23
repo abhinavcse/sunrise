@@ -2,11 +2,12 @@
 
 class dbobject
 {
-    function create($email,$name,$pwd)
+    public $email;public $name;public $pwd;
+    function create()
     {
         global $database;
         return $database->query("insert into `users`(`email`,`uname`,`password`)
-         values('$email','$name','$pwd')"); 
+         values('".$this->email."','".$this->name."','".$this->pwd."')"); 
     } 
     function redirect($page)
     {
