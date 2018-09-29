@@ -2,11 +2,11 @@
 require("init.php");
 if(isset($_POST['submit']))
 {
-    $dbobject->email=trim($_POST['email']);$dbobject->name= trim($_POST['name']);
-    $dbobject->pwd=trim($_POST['pwd']);   
-    $dbobject->create();
-    $dbobject->page="index.php";
-    $dbobject->redirect();
+        $dbobject->email=trim($_POST['email']);$dbobject->name= trim($_POST['name']);
+        $dbobject->pwd=trim($_POST['pwd']);   
+        $dbobject->create();
+        $dbobject->page="index.php";
+        $dbobject->redirect();
 }
 else if(isset($_POST['Login']))
 {
@@ -14,6 +14,7 @@ else if(isset($_POST['Login']))
     $dbobject->email=trim($_POST['email']);$dbobject->pwd=trim($_POST['pwd']); 
     if($dbobject->auth() == 1)
     {
+        $dbobject->getUserData();
         $dbobject->page="home.php";
         $dbobject->redirect();
     }

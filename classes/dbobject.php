@@ -2,7 +2,17 @@
 
 class dbobject
 {
-    public $email;public $name;public $pwd;public $stmt;public $page;
+    public $email;public $name;public $pwd;public $stmt;public $page;public $loginDetails;
+    public function getUserData()
+    {
+       global $database;global $session;
+       
+       $this->stmt=$database->query(" select * from `users` where `email`='".$this->email."' "); 
+       
+       $this->loginDetails= mysqli_fetch_array($this->stmt); 
+       
+       $session->createLoginDetails();
+    }
     function create()
     {
         global $database;
